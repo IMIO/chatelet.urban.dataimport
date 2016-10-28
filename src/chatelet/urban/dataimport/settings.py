@@ -3,11 +3,12 @@
 from imio.urban.dataimport.browser.controlpanel import ImporterControlPanel
 from imio.urban.dataimport.browser.import_panel import ImporterSettings
 from imio.urban.dataimport.browser.import_panel import ImporterSettingsForm
-from imio.urban.dataimport.agorawin.settings import AgorawinImporterFromImportSettings
+from imio.urban.dataimport.acropole.settings import AcropoleImporterFromImportSettings
 
 
 class ChateletImporterSettingsForm(ImporterSettingsForm):
     """ """
+
 
 class ChateletImporterSettings(ImporterSettings):
     """ """
@@ -19,7 +20,7 @@ class ChateletImporterControlPanel(ImporterControlPanel):
     import_form = ChateletImporterSettings
 
 
-class ChateletImporterFromImportSettings(AgorawinImporterFromImportSettings):
+class ChateletImporterFromImportSettings(AcropoleImporterFromImportSettings):
     """ """
 
     def get_importer_settings(self):
