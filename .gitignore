@@ -28,7 +28,11 @@ docs/html
 include
 lib
 <<<<<<< HEAD
+<<<<<<< HEAD
 !src/chatelet
 =======
 !src/Florennes
 >>>>>>> 7ec463228456dc86b4ece3fd1bcf83ee62f0ce01
+=======
+!src/chatelet
+>>>>>>> ec0e70f365fbe3ecff33b71c2608c9e16685f954
