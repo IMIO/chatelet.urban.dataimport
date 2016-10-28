@@ -27,4 +27,4 @@ src/*
 docs/html
 include
 lib
-!src/Florennes
+!src/chatelet
