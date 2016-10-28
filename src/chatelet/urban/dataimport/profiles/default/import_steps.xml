@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+
+ <import-step
+    id="chatelet.urban.dataimport-chateletUrbawebImport"
+    handler="chatelet.urban.dataimport.importer.importChateletUrbaweb"
+    title="Urbaweb import for Chatelet">
+  Urbaweb import for Chatelet
+ </import-step>
+
+</import-steps>
