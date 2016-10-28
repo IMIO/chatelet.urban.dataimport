@@ -1,0 +1,6 @@
+[report]
+include =
+    src/chatelet/*
+omit =
+    */test*
+    */upgrades/*
