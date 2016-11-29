@@ -2,11 +2,13 @@
 
 from zope.interface import implements
 
-from chatelet.urban.dataimport.interfaces import IChateletDataImporter
+from chatelet.urban.dataimport.interfaces import IChateletDataImporter, IChateletAcropoleImportSource
 from chatelet.urban.dataimport.acropole import valuesmapping
 
-from imio.urban.dataimport.acropole.importer import AcropoleDataImporter
+from imio.urban.dataimport.acropole.importer import AcropoleDataImporter, AcropoleImportSource
 from imio.urban.dataimport.acropole.importer import AcropoleValuesMapping
+
+from sqlalchemy import and_
 
 
 class LicencesImporter(AcropoleDataImporter):
@@ -14,8 +16,40 @@ class LicencesImporter(AcropoleDataImporter):
 
     implements(IChateletDataImporter)
 
-    def __init__(self, db_name='urb93022ac', table_name='wrkdossier', key_column='WRKDOSSIER_ID', savepoint_length=0):
+    def __init__(self, db_name='chatelet_20160829', table_name='wrkdossier', key_column='WRKDOSSIER_ID', savepoint_length=0):
         super(AcropoleDataImporter, self).__init__(db_name, table_name, key_column, savepoint_length)
+
+
+class LicencesImportSource(AcropoleImportSource):
+    implements(IChateletAcropoleImportSource)
+
+    def __init__(self, importer):
+        super(LicencesImportSource, self).__init__(importer)
+
+    def iterdata(self):
+        # iterate on Chatelet database
+        result = self.session.query(self.main_table)
+        wrkdossier = self.importer.datasource.get_table('wrkdossier')
+
+        folderIdToImport = [
+            -67348, # EnvClassOne Permis d’environnement classe 1
+            -62737, # Permis d'urbanisation
+            # -53925, permis unique, en cours d'implémentation
+            -49306, # Article 127
+            -46623, # EnvClassThree CL3 Déclaration environnementale de classe 3
+            -42575, # Permis d'urbanisme
+            -37624, # EnvClassOne Permis d’environnement  classe 1
+            # -36624, # Infractions, implémentation prévue dans le futur
+            # -34766, # TODO Lettre notariale (art 85) : fix applicant
+            -15200, # Déclaration
+            -14179, # Division
+        ]
+
+        # default:
+        # Remove Urba 2000 folders, infraction, 'permis unique' and history (to validate for this last)
+        records = result.filter(and_(wrkdossier.columns['DOSSIER_TDOSSIERID'].in_(folderIdToImport), ~wrkdossier.columns['DOSSIER_NUMERO'].like('HIST%'), ~wrkdossier.columns['DOSSIER_NUMERO'].like('PU%'))).order_by(wrkdossier.columns['WRKDOSSIER_ID'].desc()).all()
+
+        return records
 
 
 class LicencesValuesMapping(AcropoleValuesMapping):

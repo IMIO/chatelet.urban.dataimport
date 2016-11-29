@@ -11,6 +11,13 @@
         />
 
     <adapter
+        for="chatelet.urban.dataimport.interfaces.IChateletDataImporter"
+        factory="chatelet.urban.dataimport.acropole.importer.LicencesImportSource"
+        provides="imio.urban.dataimport.interfaces.IUrbanImportSource"
+        name="data source"
+        />
+
+    <adapter
         for="imio.urban.dataimport.interfaces.IImportSettingsForm"
         factory=".settings.LicencesImporterFromImportSettings"
         provides="imio.urban.dataimport.acropole.interfaces.IAcropoleDataImporter"

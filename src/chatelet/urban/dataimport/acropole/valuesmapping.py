@@ -121,7 +121,7 @@ VALUES_MAPS = {
         'Division': [u'délivrance permis'],
         'MiscDemand': [u'Délivrance autorisation'],
         'EnvClassOne': [u'délivrance permis'],
-        'EnvClassThree': [u'date passage au Collège'],
+        'EnvClassThree': [u'Date déclaration recevable'],
     },
 
     'event_decision_map': {
@@ -144,6 +144,18 @@ VALUES_MAPS = {
         'Declaration': [u'rapport collège'],
         'MiscDemand': [u'rapport collège', u'Décision du Collège'],  # Demande de principe, others
     },
+
+    'event_envclass_ok_date_map': {
+        'EnvClassThree': [u'Déclaration recevable'],
+    },
+
+    'event_envclass_ko_date_map': {
+        'EnvClassThree': [u'Déclaration irrecevable'],
+    },
+
+    'event_envclass_ok_cond_date_map': {
+            'EnvClassThree': [u'Déc. recevable avec cond. compl.'],
+        },
 
     # Misc. dictionaries
 
@@ -316,8 +328,122 @@ VALUES_MAPS = {
         u"zone de parc privé (voirie autorisée)": "zdppva",
     },
 
+    'pcaZoneDictionary' : {
+        # déjà présentes
+        u"Zone de construction d'habitation fermée": "zone-de-construction-d-habitation-fermee",
+        u"Zone de construction d'habitation semi ouverte": "zone-de-construction-d-habitation-semi-ouverte",
+        u"Zone de construction d'habitation ouverte": "zone-de-construction-d-habitation-ouverte",
+        u"Zone de construction en annexe": "zone-de-construction-en-annexe",
+        u"Zone de recul": "zone-de-recul",
+        u"Zone artisanale": "zone-artisanale",
+        u"Zone de voirie": "zone-de-voirie",
+        u"Zone affectée à l'eau": "zone-affectee-a-l-eau",
+        u"Zone de construction à destination publique indifférenciée": "zone-de-construction-a-destination-publique-indifferenciee",
+        u"Zone agricole indiférenciée": "zone-agricole-indiferenciee",
+        # TODO nouvelles (à mettre à jour)
+        u"aire de faible densité": "afad",
+        u"aire de forte densité": "afod",
+        u"aire de moyenne densité": "amd",
+        u"dans un périmètre d'intérêt culturel, historique ou esthétique": "dupiche",
+        u"dans un périmètre d'intérêt paysager": "dupip",
+        u"dans un périmètre de réservation": "dupdr",
+        u"déclaré inhabitable": "di",
+        u"dossier en cours": "dec",
+        u"eau": "eau",
+        u"élevé": "eleve",
+        u"éloignée": "eloi",
+        u"en partie dans un périmètre de réservation": "epdupdr",
+        u"faible": "fai",
+        u"infraction relevée mais sans pv": "irmspv",
+        u"moyen": "moy",
+        u"parcs résidentiels": "pres",
+        u"périmètre de réservation sur 75 m de profondeur à partir de l'axe de la voirie": "pdrs75mdpapdadlv",
+        u"périmètre de zones protégées": "pdzp",
+        u"plan d'eau": "peau",
+        u"pv de constat d'infraction": "pvdci",
+        u"rapprochée": "rapp",
+        u"sans affectation": "saffec",
+        u"travaux imposés": "timp",
+        u"très faible": "tfai",
+        u"voirie": "voirie",
+        u"zone agricole": "za",
+        u"zone agricole dans un périmètre d'intérêt paysager": "zadupip",
+        u"zone agricole dans un périmètre d'intérêt paysager pour le surplus": "zadupippsur",
+        u"zone agricole et zone de bâtisses agricoles": "zaezba",
+        u"zone agricole et zone forestière": "zaezf",
+        u"zone agricole pour le surplus": "zaplsur",
+        u"zone agricole pour partie": "zapp",
+        u"zone artisanale": "zart",
+        u"zone boisée": "zb",
+        u"zone d'activité économique industrielle": "zaei",
+        u"zone d'activité économique mixte": "zaem",
+        u"zone d'activités économiques et commerciales": "zaeec",
+        u"zone d'aménagement communal concerté": "zacc",
+        u"zone d'aménagement communal concerté mise en oeuvre": "zaccmeo",
+        u"zone d'assainissement autonome": "zaa",
+        u"zone d'assainissement collectif": "zac",
+        u"zone d'entreprise commerciale de grande dimension": "zecdgd",
+        u"zone d'équipement communautaire": "zec",
+        u"zone d'équipements communautaires et de services publics": "zecedsp",
+        u"zone d'espaces verts": "zev",
+        u"zone d'ext d'industrie": "zexti",
+        u"zone d'ext. d'habitat": "zexth",
+        u"zone d'ext. d'habitat à caractère rural": "zexthacr",
+        u"zone d'ext.. de parcs résidentiels": "zextdpr",
+        u"zone d'extension pour bâtisses  espacées": "zexpbe",
+        u"zone d'extension pour bâtisses espacées": "zexpbe",
+        u"zone d'extraction": "zextract",
+        u"zone d'habitat": "zha",
+        u"zone d'habitat à caractère rural": "zhaacr",
+        u"zone d'habitat à caractère rural sur une profondeur de 40 mètres": "zhaacrsp40",
+        u"zone d'habitat à caractère rural sur une profondeur de 50 mètres": "zhaacrsp50",
+        u"zone d'habitat dans un périmètre d'intérêt culturel, historique ou esthétique": "zhadupiche",
+        u"zone d'habitat sur 50 m de profondeur": "zhas50dp",
+        u"zone d'habitation": "zhation",
+        u"zone d'habitation, annexes, abris": "zhaaa",
+        u"zone de bâtisses agricoles": "zdba",
+        u"zone de construction d'habitation fermée": "zdchaf",
+        u"zone de construction d'habitation ouverte": "zdchao",
+        u"zone de construction d'habitation semi-ouverte": "zdchaso",
+        u"zone de construction en annexe": "zdcea",
+        u"zone de cours et jardins": "zdcej",
+        u"zone de loisirs": "zdl",
+        u"zone de parc": "zdparc",
+        u"zone de parc ou d'espaces verts": "zdparcev",
+        u"zone de prévention en matière de prises d'eau souterraines, zones éloignées.": "zdpemdpeausoutze",
+        u"zone de recul": "zdrec",
+        u"zone de recul et de voirie": "zdrecedv",
+        u"zone de recul, zone de construction d'habitation fermée et zone de cours et jardins": "zdreczdchafeezdcej",
+        u"zone de service": "zdserv",
+        u"zone de voirie réservée aux piétons": "zdvoirap",
+        u"zone de voiries et d'espaces publics": "zdveep",
+        u"zone faiblement habitée": "zfaiha",
+        u"zone forestière": "zforest",
+        u"zone forestière d'intérêt paysager": "zforestip",
+        u"zone industrielle": "zi",
+        u"zone réservée aux annexes": "zresaa",
+        u"zone réservée aux constructions à un étage": "zresacaue",
+        u"zone réservée aux constructions principales": "zresacprinc",
+        u"zone réservée aux constructions principales, en zone de cours et jardins et en voirie": "zresacprincezcejeev",
+    },
+
     'raw_pca_List': {
         u"pca1", u"pca2", u"pca3", u"pca4",
     },
 
+    'contact_Proprietary_List': {
+        'UrbanCertificateOne', 'UrbanCertificateTwo', 'Division','NotaryLetter',
+    },
+
+
+
+    # Simple keys by locality
+    'pcaLikeType': 'PCA%',
+    'avisPrealableDuFD': u'%avis préalable du FD%',
+
+    'architects_cpsn_type': {-47146, -1003},
+    'architects_cpsn_type_like': '%architect%',
+
+    'notaire_cpsn_type': {996050, 917942, -47148},
+    'notaire_cpsn_type_like': '%notaire%',
 }
