@@ -25,22 +25,22 @@ VALUES_MAPS = {
 
     # octroi/refus
     'state_map': {
-        -58L: '',  # chatelet => TODO validate
+        -58L: 'refuse',  # irrecevable (validé par chatelet)
         -49L: 'accept',  # -49 = octroyé
         -46L: 'refuse',  # -46 = annulé par le FD
-        -30L: '',  # chatelet => TODO validate
-        -27L: '',  # chatelet => TODO validate
+        -30L: 'accept',  # recevable (validé par chatelet)
+        -27L: 'accept',  # recevable avec condition (validé par chatelet)
         -26L: 'accept',  # -26 = octroyé
-        -20L: '',  # chatelet => TODO validate
+        -20L: 'refuse',  # # refus, ministre sur recours (validé par chatelet)
         -19L: 'retire',  # -19 = périmé
-        -17L: '',  # chatelet => TODO validate
-        -15L: '',  # chatelet => TODO validate
+        -17L: 'refuse',  # refus (FT) (validé par chatelet)
+        -15L: 'accept',  # accepté (FT) (validé par chatelet)
         -14L: 'accept',  # -14 = octroyé
         -12L: 'accept',  # -12 = octroyé (validé par Fl)
         -11L: 'retire',  # -11 = retiré
         -10L: 'retire',  # -10 = retiré (validé par Fl)
-        -8L: '',   # chatelet => TODO validate
-        -7L: '',   # chatelet => TODO validate
+        -8L: 'refuse',   # irrecevable (validé par chatelet)
+        -7L: 'accept',   # recevable (validé par chatelet)
         -6L: 'accept',  # -6 = octroyé (validé par Fl)
         -5L: 'refuse',  # -5 = refusé
         -4L: 'retire',  # -4 = suspendu
