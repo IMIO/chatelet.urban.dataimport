@@ -5,13 +5,13 @@ from imio.urban.dataimport.mapping import table
 VALUES_MAPS = {
     'type_map': table({
         'header': ['portal_type', 'foldercategory'],
-        -67348: ['EnvClassOne', ''],  # Permis d’environnement classe 1
+        -67348: ['EnvClassTwo', ''],  # Permis d’environnement classe 2
         -62737: ['ParcelOutLicence', 'lap'],
         -53925: ['', ''],  # Permis unique, ne pas reprendre pour l'instant
         -49306: ['Article127', ''],
         -46623: ['EnvClassThree', ''],  # permis d'environnement classe 3
         -42575: ['BuildLicence', 'uap'],
-        -37624: ['EnvClassOne', ''],  # permis d'environnement classe 1
+        -37624: ['EnvClassTwo', ''],  # permis d'environnement classe 2
         -36624: ['', 'infraction'],  # infractions, implémentation prévue dans le futur
         -34766: ['NotaryLetter', ''],  # lettre de notaire (art 85)
         -15200: ['Declaration', ''],
@@ -69,7 +69,7 @@ VALUES_MAPS = {
         'UrbanCertificateTwo': ['octroi-cu2', '', 'depot-de-la-demande', '', '', ''],
         'NotaryLetter': ['octroi-lettre-notaire', '', 'depot-de-la-demande', '', '', ''],
         'Article127': ['delivrance-du-permis-octroi-ou-refus', '', 'depot-de-la-demande', '', '', ''],
-        'EnvClassOne': ['decision', '', 'depot-de-la-demande', '', '', ''],
+        'EnvClassTwo': ['decision', '', 'depot-de-la-demande', '', '', ''],
         'EnvClassThree': ['acceptation-de-la-demande', '', 'depot-de-la-demande', '', '', ''],
     }),
 
@@ -94,9 +94,9 @@ VALUES_MAPS = {
         'UrbanCertificateOne': [u'réception demande'],
         'UrbanCertificateTwo': [u'réception demande'],
         'Declaration': [u'dépôt ou envoi de la déclaration'],
-        'Division': [u'récépissé'],
+        'Division': [u'récépissé', u"réception avis de division du notaire"],
         'MiscDemand': [u'Accusé de réception', u'réception demande'],
-        'EnvClassOne': [u'accusé de réception', u'réception demande', u'récépissé'],
+        'EnvClassTwo': [u'accusé de réception', u'réception demande', u'récépissé'],
         'EnvClassThree': [u'Accusé de réception', u'réception demande', u'récépissé'],
     },
 
@@ -107,10 +107,10 @@ VALUES_MAPS = {
         'NotaryLetter': '',
         'UrbanCertificateOne': [u'CU1'],
         'UrbanCertificateTwo': [u'CU2'],
-        'Declaration': [u'délivrance permis'],
+        'Declaration': [u'délivrance permis', u"rapport collège"],
         'Division': [u'délivrance permis'],
         'MiscDemand': [u'Délivrance autorisation'],
-        'EnvClassOne': [u'délivrance permis'],
+        'EnvClassTwo': [u'délivrance permis', u"Date délivrance permis"],
         'EnvClassThree': [u'Date déclaration recevable'],
     },
 
@@ -121,10 +121,10 @@ VALUES_MAPS = {
         'NotaryLetter': '',
         'UrbanCertificateOne': [u'CU1'],
         'UrbanCertificateTwo': [u'CU2'],
-        'Declaration': [u'délivrance permis'],
+        'Declaration': [u'délivrance permis', u"dossier recevable ?"],
         'Division': [u'délivrance permis'],
         'MiscDemand': [u'Délivrance autorisation'],
-        'EnvClassOne': [u'octroi du permis'],
+        'EnvClassTwo': [u'octroi du permis', u"dossier recevable ?", u"dossier recevable"],
         'EnvClassThree': [u'date de décision exécutoire'],
     },
 
@@ -146,6 +146,8 @@ VALUES_MAPS = {
     'event_envclass_ok_cond_date_map': {
             'EnvClassThree': [u'Déc. recevable avec cond. compl.'],
         },
+
+    'declaration_record': {'dossier recevable ?', 'dossier recevable',},
 
     # Misc. dictionaries
 
@@ -222,7 +224,7 @@ VALUES_MAPS = {
         u"zone naturelle": "zn",
         u"zone de parc": "zp",
         u"zone Natura 2000": "znatura2000",
-        # TODO nouvelles zones à encoder
+
         u"Zone d'habitat": "zh",
         u"fonction centrale (2)": "fc",
         u"zone urbaine centrale": "zuc",
@@ -233,7 +235,7 @@ VALUES_MAPS = {
         u"centre ancien de Châtelet (1A)": "cadc",
         u"Zone d'espaces verts": "zev",
         u"aire d'espaces verts et forestière (8)": "zevf",
-        u"zone d'intérêt paysager": "zip",
+        u"zone d'intérêt paysager": "zipa",
         u"aire de bâtisses agglomérées (3)": "aba",
         u"Zone de services publics et d'équipements communautaires": "zspec",
         u"aire de grandes bâtisses en milieu isolé non accessibles au public (6B)": "agbminap",
@@ -260,7 +262,7 @@ VALUES_MAPS = {
         u"Zone de loisirs": "zdl",
         u"Zone d'aménagement communal concerté": "zacc",
         u"zone de voirie publique": "zdvp",
-        u"zone de construction en ordre contigü (hauteur max 24 m)": "zdcoc",
+        u"zone de construction en ordre contigü (hauteur max 24 m)": "zdcoc24",
         u"zone de constructions résidentielles secondaires": "zdcrs",
         u"zone de cours et jardins": "zdcj",
         u"Zone forestière": "zf",
@@ -330,7 +332,7 @@ VALUES_MAPS = {
         u"Zone affectée à l'eau": "zone-affectee-a-l-eau",
         u"Zone de construction à destination publique indifférenciée": "zone-de-construction-a-destination-publique-indifferenciee",
         u"Zone agricole indiférenciée": "zone-agricole-indiferenciee",
-        # TODO nouvelles (à mettre à jour)
+
         u"aire de faible densité": "afad",
         u"aire de forte densité": "afod",
         u"aire de moyenne densité": "amd",
