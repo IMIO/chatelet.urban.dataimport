@@ -441,4 +441,6 @@ VALUES_MAPS = {
 
     'notaire_cpsn_type': {996050, 917942, -47148},
     'notaire_cpsn_type_like': '%notaire%',
+
+    'investigation_object_key': u"objet enquête",
 }
