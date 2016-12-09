@@ -31,7 +31,7 @@ VALUES_MAPS = {
         -30L: 'accept',  # recevable (validé par chatelet)
         -27L: 'accept',  # recevable avec condition (validé par chatelet)
         -26L: 'accept',  # -26 = octroyé
-        -20L: 'refuse',  # # refus, ministre sur recours (validé par chatelet)
+        -20L: 'refuse',  # refus, ministre sur recours (validé par chatelet)
         -19L: 'retire',  # -19 = périmé
         -17L: 'refuse',  # refus (FT) (validé par chatelet)
         -15L: 'accept',  # accepté (FT) (validé par chatelet)
@@ -427,10 +427,8 @@ VALUES_MAPS = {
     },
 
     'contact_Proprietary_List': {
-        'UrbanCertificateOne', 'UrbanCertificateTwo', 'Division','NotaryLetter',
+        'UrbanCertificateOne', 'UrbanCertificateTwo', 'Division', 'NotaryLetter',
     },
-
-
 
     # Simple keys by locality
     'pcaLikeType': 'PCA%',
