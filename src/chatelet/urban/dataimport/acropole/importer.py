@@ -8,7 +8,7 @@ from chatelet.urban.dataimport.acropole import valuesmapping
 from imio.urban.dataimport.acropole.importer import AcropoleDataImporter, AcropoleImportSource
 from imio.urban.dataimport.acropole.importer import AcropoleValuesMapping
 
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 
 
 class LicencesImporter(AcropoleDataImporter):
@@ -32,22 +32,22 @@ class LicencesImportSource(AcropoleImportSource):
         wrkdossier = self.importer.datasource.get_table('wrkdossier')
 
         folderIdToImport = [
-            -67348, # EnvClassOne Permis d’environnement classe 1
+            -67348, # EnvClassTwo Permis d’environnement classe 2
             -62737, # Permis d'urbanisation
             # -53925, permis unique, en cours d'implémentation
             -49306, # Article 127
             -46623, # EnvClassThree CL3 Déclaration environnementale de classe 3
             -42575, # Permis d'urbanisme
-            -37624, # EnvClassOne Permis d’environnement  classe 1
+            -37624, # EnvClassTwo Permis d’environnement  classe 2
             # -36624, # Infractions, implémentation prévue dans le futur
-            # -34766, # TODO Lettre notariale (art 85) : fix applicant
+            -34766, # TODO Lettre notariale (art 85) : fix applicant
             -15200, # Déclaration
             -14179, # Division
         ]
 
         # default:
-        # Remove Urba 2000 folders, infraction, 'permis unique' and history (to validate for this last)
-        records = result.filter(and_(wrkdossier.columns['DOSSIER_TDOSSIERID'].in_(folderIdToImport), ~wrkdossier.columns['DOSSIER_NUMERO'].like('HIST%'), ~wrkdossier.columns['DOSSIER_NUMERO'].like('PU%'))).order_by(wrkdossier.columns['WRKDOSSIER_ID'].desc()).all()
+        # Remove Urbaweb folders, infraction, 'permis unique'
+        records = result.filter(and_(wrkdossier.columns['DOSSIER_TDOSSIERID'].in_(folderIdToImport), ~wrkdossier.columns['DOSSIER_NUMERO'].like('PU%'))).order_by(wrkdossier.columns['WRKDOSSIER_ID'].desc()).all()
 
         return records
 
